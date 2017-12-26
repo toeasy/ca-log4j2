@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <centit.commons.version>2.2.0-SNAPSHOT</centit.commons.version>
+    <jdk.version>1.7</jdk.version>
+    <ical4j.version>2.0.0</ical4j.version>
+    <dom4j.version>2.0.0</dom4j.version>
+    <commons-lang3.version>3.5</commons-lang3.version>
+    <slf4j-api.version>1.7.25</slf4j-api.version>
+    <fastjson.version>1.2.32</fastjson.version>
+    <httpcomponents.version>4.5.3</httpcomponents.version>
+    <commons-email.version>1.4</commons-email.version>
+    <commons-net.version>3.6</commons-net.version>
+    <pinyin4j.version>2.5.1</pinyin4j.version>
+    <junit.version>4.12</junit.version>
+    <commons-dbcp2.version>2.1.1</commons-dbcp2.version>
+  </properties>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.dpxcn</groupId>
+  <artifactId>support.log4j2.glc</artifactId>
+
+  <version>1.0.0-SNAPSHOT</version>
+  <name>com.dpxcn.support:log4j2-glc</name>
+  <packaging>pom</packaging>
+  <description>自定义的log4j2 appender</description>
+  <url>https://github.com/toeasy/ca-logback</url>
+  <dependencies>
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>3.9.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.okio</groupId>
+      <artifactId>okio</artifactId>
+      <version>1.13.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.43</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>4.3.7.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.0.1</version>
+    </dependency>
+
+  </dependencies>
+
+  <licenses>
+    <license>
+      <name>MIT License</name>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>iosevka</name>
+      <email>sunway900@gmail.com</email>
+      <organization>dpxcn.com</organization>
+      <organizationUrl>http://www.dpxcn.com</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>
+      scm:git:https://github.com/toeasy/ca-logback.git
+    </connection>
+    <developerConnection>
+      scm:git:https://github.com/toeasy/ca-logback.git
+    </developerConnection>
+    <url>https://github.com/toeasy/ca-logback</url>
+    <tag>v0.0.1</tag>
+  </scm>
+
+
+
+  <!-- mvn deploy -DpomFile=pom.xml -->
+
+  <distributionManagement>
+    <repository>
+      <id>ossrh</id>
+      <name>sonatype-releases</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <name>sonatype-snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <!--<distributionManagement>
+      <repository>
+          <id>centit-releases</id>
+          <name>centit-release</name>
+          <url>http://develop.centit.com:8080/nexus/content/repositories/centit-releases/</url>
+      </repository>
+      <snapshotRepository>
+          <id>centit-snapshots</id>
+          <name>centit-snapshots</name>
+          <url>http://develop.centit.com:8080/nexus/content/repositories/centit-snapshots/</url>
+      </snapshotRepository>
+  </distributionManagement>-->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>${jdk.version}</source>
+          <target>${jdk.version}</target>
+          <encoding>UTF-8</encoding>
+          <compilerArguments>
+            <verbose />
+            <bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</bootclasspath>
+          </compilerArguments>
+        </configuration>
+      </plugin>
+
+      <!-- 打包时添加源码 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9.1</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- GPG自动签名的插件 -->
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- sonatype release :
+          mvn nexus-staging:release -->
+
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.3</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>
