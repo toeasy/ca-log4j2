@@ -21,7 +21,7 @@
   <groupId>com.dpxcn</groupId>
   <artifactId>support.log4j2.glc</artifactId>
 
-  <version>1.0.2</version>
+  <version>1.0.3-SNAPSHOT</version>
   <name>com.dpxcn.support:log4j2-glc</name>
   <packaging>pom</packaging>
   <description>自定义的log4j2 appender</description>
@@ -94,7 +94,7 @@
       scm:git:https://github.com/toeasy/ca-log4j2.git
     </developerConnection>
     <url>https://github.com/toeasy/ca-log4j2</url>
-    <tag>support.log4j2.glc-1.0.2</tag>
+    <tag>support.log4j2.glc-Y</tag>
   </scm>
 
 
